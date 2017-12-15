@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Avaliador de segurança para senhas</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <script>
+
+            function verifica() {
+                senha = document.getElementById("senha").value;
+                forca = 0;
+                cont = 0;
+                var alfabeto = new RegExp("[a-z][A-Z]+");
+                var alfmin = new RegExp("[a-z]+");
+                var alfmas = new RegExp("[A-Z]+");
+                var num = new RegExp("[0-9]+");
+                mostra = document.getElementById("mostra");
+                if (senha >= 1) {
+                    cont += cont;
+                    forca += cont * 4;
+                }
+                if (senha.match(/[a-z]+/)) {
+                    cont += cont;
+                    forca += (senha.length - cont) * 2;
+                }
+                if (senha.match(/[A-Z]+/)) {
+                    cont += cont;
+                    forca += (senha.length - cont) * 2;
+                }
+                if (senha.match(/[0-9]/)) {
+                    cont += cont;
+                    forca += cont * 4;
+                }
+                if (senha.match(/w+/)) {
+                    cont += cont;
+                    forca += cont * 2;
+                }
+                if (senha.match(/W+/)) {
+                    cont += cont;
+                    forca += cont * 6;
+                }
+                if (senha === alfabeto) {
+                    cont -= cont;
+                    força += cont;
+                }
+                if (senha === alfmin) {
+                    cont -= cont;
+                    força += cont * 2;
+                }
+                
+                return mostra_res();
+            }
+            function mostra_res() {
+                if (forca < 30) {
+                    mostra.innerHTML = '<tr><td bgcolor="red" width="' + forca + '"></td><td>Fraca </td></tr>';
+                } else if ((forca >= 30) && (forca < 60)) {
+                    mostra.innerHTML = '<tr><td bgcolor="yellow" width="' + forca + '"></td><td>Média </td></tr>';
+                    ;
+                } else if ((forca >= 60) && (forca < 85)) {
+                    mostra.innerHTML = '<tr><td bgcolor="blue" width="' + forca + '"></td><td>Forte </td></tr>';
+                } else {
+                    mostra.innerHTML = '<tr><td bgcolor="green" width="' + forca + '"></td><td>Excelente </td></tr>';
+                }
+            }
+        </script>
+        <form name="teste" id="teste" onsubmit="return false">
+            <fieldset> 
+                <legend> AVALIADOR DE SEGURANÇA DE SENHAS </legend> 
+                <input type="password" placeholder="Senha" name="senha" id="senha" onkeyup="javascript:verifica()" />
+                <table id="mostra"></table>
+            </fieldset>
+        </form>
+    </body> 
+</html>
+
+
